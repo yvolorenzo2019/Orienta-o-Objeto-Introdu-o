@@ -1,14 +1,15 @@
+<meta charset="utf-8">
 <?php
 
 // Classe cliente
-class Cliente implements Pedido{
+class Cliente extends Pedido{
 	private $nome;
 	private $telefone;
 	private $cpf;
 
 	//metodos magicos
-	public function __construct($nome, $telefone, $cpf){
-		echo '';
+	public function __construct(){
+		
 	}
 
 	public function __destruct(){
@@ -77,8 +78,8 @@ class Pedido{
 		$this->itens = $itens;
 	}
 
-	public function addProduto($nProduto){
-		
+	public function addProduto(Produto $p){
+		array_push($innerProduto, $p);
 	}
 
 	public function listarProduto(){
@@ -86,7 +87,7 @@ class Pedido{
 	}
 }
 // Class Produto 
-class Produto implements Pedido{
+class Produto extends Pedido{
 	private $codigo;
 	private $nome;
 	private $valor;
@@ -133,3 +134,16 @@ class Produto implements Pedido{
 		
 	}
 }
+//objeto cliente
+$c = new Cliente();
+$c->setNome("cabrito");
+echo $c->getNome();
+$c->setCpf(1323212312);
+//objeto produto
+$produto = new Produto();
+$produto->setCodigo('1');
+$produto->setNome('coco de coelho');
+$produto->setValor('80');
+//objeto pedido
+$p = new Pedido();
+$p->addProduto(3);
